@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+
+>
+
+    <com.wozpi.core.witget.WozImageView
+            android:id="@+id/imgError"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bg_error"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:background="@drawable/background_woz_dialog"
+    >
+        <TextView
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No message available"
+                android:textColor="@color/colorTextTitle"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textAlignment="center"
+        />
+
+        <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_error_report"
+                android:textColor="@color/colorTextNormal"
+                android:textAlignment="center"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+        />
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:visibility="gone"
+        >
+            <ImageView
+                    android:id="@+id/iconError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_error"
+                    android:contentDescription="@null"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iconError"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/content_error_report"
+                    android:textColor="@color/colorTextNormal"
+            />
+
+        </RelativeLayout>
+        <View
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDiverWozDialog"
+        />
+
+        <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report"
+                android:layout_gravity="center"
+                android:textColor="#fff"
+                android:background="@drawable/background_woz_dialog"
+                android:backgroundTint="@color/colorAccent"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+
+        />
+    </LinearLayout>
+
+
+</FrameLayout>

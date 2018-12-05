@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#da552f</color>
+
+    <color name="colorBgWozDialog">#ffffff</color>
+    <color name="colorDiverWozDialog">#dedede</color>
+    <color name="colorTextNormal">#494949</color>
+    <color name="colorTextTitle">#0f0f0f</color>
 </resources>

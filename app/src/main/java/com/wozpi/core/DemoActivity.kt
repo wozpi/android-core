@@ -5,7 +5,7 @@ import com.wozpi.core.databinding.ActivityMainBinding
 class DemoActivity : WozActivity<ActivityMainBinding>() {
 
     override fun initData() {
-
+        DemoDialog(this).show()
     }
 
     override fun setLayoutView(): Int {

@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="WozDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

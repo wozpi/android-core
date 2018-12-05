@@ -29,6 +29,10 @@ abstract class WozActivity<T : ViewDataBinding?> : AppCompatActivity() {
         mBiding!!.setVariable(setNameViewModel(),setViewModelObject())
 
         initToolbar()
+
+        initData()
+
+        loadData()
     }
 
     abstract fun setLayoutView():Int
