@@ -14,20 +14,39 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".WozActivity">
+            tools:context=".view.WozActivity">
 
         <include layout="@layout/toolbar_woz"
                  app:title = "@{mainViewModel.titleToolbar}"
         />
 
-        <TextView
-                android:id="@+id/viewName"
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{mainViewModel.nameBeautiful}"
-                android:onClick="@{mainViewModel.onClickChange}"
-                android:textColor="@color/colorAccent"
-        />
+                android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listData"
+                    android:layout_width="match_parent"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    android:layout_height="match_parent"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{mainViewModel.MUser.name}"
+            />
+
+            <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:onClick="@{()->mainViewModel.buttonClick()}"
+            />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 </layout>

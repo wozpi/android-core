@@ -1,5 +1,6 @@
 package com.wozpi.core.service
 
+import android.util.Log
 import com.wozpi.core.R
 import retrofit2.Call
 import retrofit2.CallAdapter
@@ -7,6 +8,7 @@ import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import rx.Observable
+import java.io.IOException
 import java.lang.reflect.Type
 
 class RxErrorHandlingCallAdapterFactory : CallAdapter.Factory() {
@@ -64,17 +66,21 @@ class RxErrorHandlingCallAdapterFactory : CallAdapter.Factory() {
                 return if(throwable.code() == 422){
                     RetrofitException.httpErrorWithObject(response.raw().request().url().toString(),response,mRetrofit)
                 }else{
+                    Log.e("WOW","httpError")
                     RetrofitException.httpError(response.raw().request().url().toString(),response,mRetrofit)
                 }
 
             }
 
-//          TODO  check is have internet
-//          TODO  check have internet but not to internet
+//          TODO  check is have internet or check have internet but not to internet
 
+            if(throwable is IOException){
+                Log.e("WOW","networkError")
+                return RetrofitException.networkError(throwable)
+            }
 //            TODO("when server not fond")
 
-
+            Log.e("WOW","unexpectedError")
             return RetrofitException.unexpectedError(throwable)
         }
     }

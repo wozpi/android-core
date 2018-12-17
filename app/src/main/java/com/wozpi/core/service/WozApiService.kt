@@ -16,14 +16,6 @@ open class WozApiService {
     var mReadTimeOut:Long = 60
     var mWriteTimeOut:Long = 60
 
-    private object Holder  {
-        val INSTANCE = WozApiService()
-    }
-    companion object {
-        val instances : WozApiService by lazy {
-            Holder.INSTANCE
-        }
-    }
 
     init {
         /**
@@ -69,18 +61,18 @@ open class WozApiService {
     }
 
 
-    protected fun setAuthentication():String?{
+    protected open fun setAuthentication():String?{
         return null
     }
 
-    protected fun setNameHeader():String{
+    protected open fun setNameHeader():String{
         return "Authorization"
 
     }
 
 
     protected fun baseURL():String{
-        return "http://api.plos.org/"
+        return "https://vnexpress.net"
     }
 
 
@@ -88,8 +80,5 @@ open class WozApiService {
         return mRetrofit.create(cl)
     }
 
-    fun <T> createServicev2(cl:Class<T>): T{
-        return mRetrofit.create(cl)
-    }
 
 }

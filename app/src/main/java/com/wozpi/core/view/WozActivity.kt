@@ -1,5 +1,7 @@
-package com.wozpi.core
+package com.wozpi.core.view
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -8,6 +10,9 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.wozpi.core.model.KindException
+import com.wozpi.core.model.WozException
+import com.wozpi.core.viewmodel.WozViewModel
 import kotlinx.android.synthetic.main.toolbar_woz.*
 
 abstract class WozActivity<T : ViewDataBinding?> : AppCompatActivity() {
@@ -18,15 +23,17 @@ abstract class WozActivity<T : ViewDataBinding?> : AppCompatActivity() {
         LOAD_MORE
     }
 
+    private var mListViewModel = ArrayList<WozViewModel>()
     protected var mStatusLoading = STATUS.FIRST_LOAD
 
-    private var mBiding: T? = null
+    protected open var mBiding: T? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(setLayoutView())
         mBiding = DataBindingUtil.setContentView<T>(this,setLayoutView())
-        mBiding!!.setVariable(setNameViewModel(),setViewModelObject())
+
+        mBiding!!.setLifecycleOwner(this)
 
         initToolbar()
 
@@ -37,22 +44,54 @@ abstract class WozActivity<T : ViewDataBinding?> : AppCompatActivity() {
 
     abstract fun setLayoutView():Int
 
-    abstract fun setNameViewModel(): Int
-
-    abstract fun setViewModelObject(): WozViewModel
 
     abstract fun initData()
 
     override fun onDestroy() {
-        setViewModelObject().onDestroy()
+        for (e in mListViewModel){
+            e.onDestroy()
+        }
         super.onDestroy()
     }
 
-    fun addViewModel(name: Int, viewModelObject: WozViewModel){
-        mBiding!!.setVariable(name,viewModelObject)
+    fun <V:WozViewModel> setViewModel(name: Int, viewModelClass: Class<out V>):V{
+        val viewModel = ViewModelProviders.of(this).get(viewModelClass)
+        mBiding!!.setVariable(name,viewModel)
+        mListViewModel.add(viewModel)
+
+        viewModel.getKindException().observe(this, Observer {
+           if(it != null) {
+               when (it.mKindException){
+                   KindException.NETWORK-> {
+                       onRetryConnection(it.mTag)
+                   }
+                   else-> onException(viewModel, it, it.mTag)
+               }
+
+           }
+        })
+
+        return viewModel
     }
 
-    fun loadData(){
+    open fun <V:WozViewModel> onException(viewModel:V,ex: WozException?,tag:Int){
+        if(ex != null) {
+            ErrorDialog(this)
+                .setMessage(ex.mMessage)
+                .show()
+        }
+    }
+
+
+    protected open fun loadData(){
+
+    }
+
+    /**
+     * @tag
+     * Handle error retry connection when call api
+     * */
+    protected open fun  onRetryConnection(tag: Int){
 
     }
 
@@ -61,7 +100,7 @@ abstract class WozActivity<T : ViewDataBinding?> : AppCompatActivity() {
      * */
 
 
-    protected fun isHideSoftKeyBoardTouchOutSide():Boolean{
+    protected open fun isHideSoftKeyBoardTouchOutSide():Boolean{
         return true
     }
 

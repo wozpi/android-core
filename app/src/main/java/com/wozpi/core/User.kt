@@ -1,4 +1,8 @@
 package com.wozpi.core
 
-class User {
+import android.databinding.BaseObservable
+
+class User : BaseObservable() {
+    var name:String = "Wozpi"
+    var age:Int = 23
 }

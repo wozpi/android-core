@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="size_title"></dimen>
-    <dimen name="size_normal"></dimen>
+    <dimen name="size_title">18sp</dimen>
+    <dimen name="size_normal">13sp</dimen>
+    <dimen name="size_little">12sp</dimen>
+    <dimen name="size_image_top_dialog">150dp</dimen>
 </resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            tools:ignore="UselessParent">
+
+        <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bg_no_data"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/description_no_data"
+        />
+
+        <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opp"
+                android:textSize="@dimen/size_title"
+                android:textColor="@color/colorTextTitle"
+        />
+
+        <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No internet"
+                android:textSize="@dimen/size_normal"
+                android:textColor="@color/colorTextNormal"
+        />
+
+    </LinearLayout>
+</RelativeLayout>

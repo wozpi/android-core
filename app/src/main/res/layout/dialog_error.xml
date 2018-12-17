@@ -8,29 +8,23 @@
 
 >
 
-    <com.wozpi.core.witget.WozImageView
-            android:id="@+id/imgError"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/bg_error"
-    />
-
     <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="15dp"
+            android:paddingTop="@dimen/size_image_top_dialog"
             android:background="@drawable/background_woz_dialog"
     >
         <TextView
+                android:id="@+id/messageError"
                 android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="No message available"
                 android:textColor="@color/colorTextTitle"
-                android:textSize="18sp"
+                android:textSize="@dimen/size_title"
                 android:textStyle="bold"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -43,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/content_error_report"
                 android:textColor="@color/colorTextNormal"
+                android:textSize="@dimen/size_little"
                 android:textAlignment="center"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -94,9 +89,17 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
+                android:textSize="@dimen/size_normal"
 
         />
     </LinearLayout>
-
+    <com.wozpi.core.witget.WozImageView
+            android:id="@+id/imgError"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_image_top_dialog"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bg_error"
+    />
 
 </FrameLayout>

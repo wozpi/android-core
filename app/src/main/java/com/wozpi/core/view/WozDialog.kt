@@ -1,10 +1,11 @@
-package com.wozpi.core
+package com.wozpi.core.view
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Window
+import com.wozpi.core.WozUtils
 
 abstract class WozDialog(context: Context) : Dialog(context) {
 
@@ -19,10 +20,16 @@ abstract class WozDialog(context: Context) : Dialog(context) {
             window!!.setLayout((WozUtils.getWidthScreen(context) * 0.9).toInt(),wlp.height)
         }
 
+        setCanceledOnTouchOutside(canBeTouchOutside())
+
         initData()
     }
 
     abstract fun setLayout():Int
 
     abstract fun initData()
+
+    open fun canBeTouchOutside():Boolean{
+        return true
+    }
 }

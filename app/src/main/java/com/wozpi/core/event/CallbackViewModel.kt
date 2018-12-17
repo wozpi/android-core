@@ -1,4 +1,4 @@
-package com.wozpi.core
+package com.wozpi.core.event
 
 interface CallbackViewModel {
     fun onDestroy()
