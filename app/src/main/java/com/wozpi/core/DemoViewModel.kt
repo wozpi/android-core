@@ -54,7 +54,7 @@ class DemoViewModel : WozViewModel(){
         return items
     }
     fun buttonClick(){
-//        getProfile()
+        getProfile()
         name.set("fuck")
         mUser.name = "LOL"
 //        val mUser = User()

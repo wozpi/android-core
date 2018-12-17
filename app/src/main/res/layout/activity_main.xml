@@ -17,7 +17,7 @@
             tools:context=".view.WozActivity">
 
         <include layout="@layout/toolbar_woz"
-                 app:title = "@{mainViewModel.titleToolbar}"
+                 app:title = "@{mainViewModel.name}"
         />
 
         <RelativeLayout
@@ -26,14 +26,13 @@
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/listData"
                     android:layout_width="match_parent"
-                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                     android:layout_height="match_parent"
             />
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{mainViewModel.MUser.name}"
+                    android:text="@{mainViewModel.name}"
             />
 
             <android.support.design.widget.FloatingActionButton

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
     <data>
         <variable
                 name="itemViewModel"
@@ -9,17 +9,15 @@
     </data>
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:layout_margin="10dp"
     >
-        <TextView
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/lisTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{itemViewModel.mDataHolder}"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:textColor="#fff"
         />
 
     </RelativeLayout>

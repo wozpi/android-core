@@ -1,6 +1,7 @@
 package com.wozpi.core
 
 import android.arch.lifecycle.Observer
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.wozpi.core.databinding.ActivityMainBinding
 import com.wozpi.core.event.CallbackLoadMore
@@ -16,6 +17,11 @@ class DemoActivity : WozActivity<ActivityMainBinding>() {
     private var status = false
 
     override fun initData() {
+        val layout = LinearLayoutManager(this)
+        layout.isSmoothScrollbarEnabled = false
+        layout.reverseLayout = false
+        layout.stackFromEnd = false
+        listData.layoutManager = layout
         listData.adapter = demoAdapter
 
         val temp = setViewModel(BR.mainViewModel,DemoViewModel::class.java)

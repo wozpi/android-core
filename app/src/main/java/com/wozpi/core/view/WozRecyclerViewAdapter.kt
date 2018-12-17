@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.wozpi.core.R
 import com.wozpi.core.event.CallbackLoadMore
 import com.wozpi.core.event.EndlessRecyclerViewScrollListener
+import com.wozpi.core.viewmodel.WozHolderViewModel
 import kotlinx.android.synthetic.main.view_load_more.view.*
 
 private const val TYPE_PROGRESS_LOAD_MORE = 0x0001
@@ -16,11 +17,11 @@ private const val TYPE_NO_DATA = 0x0002
 private const val TYPE_NO_INTERNET = 0x0003
 private const val TYPE_ITEM = 0x0004
 
-abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapter<WozRecyclerViewHolder>() {
+abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapter<WozRecyclerViewHolder<*>>() {
 
 
     private var mData = ArrayList<T>()
-    private var mContext: Context = context
+    protected open var mContext: Context = context
     private var mIsNoInternet = false
     /**
      * Do you want to load more make it true
@@ -36,7 +37,7 @@ abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapt
     /**
      * start override
      * */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WozRecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WozRecyclerViewHolder<*> {
 
         return when(viewType){
             TYPE_PROGRESS_LOAD_MORE->{
@@ -60,7 +61,7 @@ abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapt
     }
 
 
-    override fun onBindViewHolder(holder: WozRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WozRecyclerViewHolder<*>, position: Int) {
         if (holder is LoadMoreViewHolder){
             holder.isShowViewProcess(position == getBottomItemPosition() && isRegisterLoadMore && !mIsReachEnd)
         }
@@ -99,7 +100,7 @@ abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapt
      * */
     protected abstract fun setLayout(viewType: Int): Int
 
-    protected abstract fun setViewHolder(viewRoot: View, viewType: Int): WozRecyclerViewHolder
+    protected abstract fun setViewHolder(viewRoot: View, viewType: Int): WozRecyclerViewHolder<*>
 
     /**
      * end abstract
@@ -201,12 +202,12 @@ abstract class WozRecyclerViewAdapter <T>(context: Context) : RecyclerView.Adapt
         this.notifyDataSetChanged()
     }
 
-    private class LoadMoreViewHolder(itemView: View) : WozRecyclerViewHolder(itemView) {
+    private class LoadMoreViewHolder(itemView: View) : WozRecyclerViewHolder<String>(itemView) {
 
         fun isShowViewProcess(isShow: Boolean){
             itemView.viewProcess.visibility = if(isShow) View.VISIBLE else View.GONE
         }
     }
 
-    private class NoDataViewHolder(itemView: View) : WozRecyclerViewHolder(itemView)
+    private class NoDataViewHolder(itemView: View) : WozRecyclerViewHolder<String>(itemView)
 }
